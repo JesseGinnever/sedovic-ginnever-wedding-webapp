@@ -15,8 +15,7 @@
 }
 
 .Main-content {
-  margin-left: 70px;
-  margin-right: 70px;
+  margin: 70px;
 }
 
 .App-title {
@@ -24,7 +23,6 @@
 }
 
 .App-intro {
-  margin-top: 70px;
   font-size: large;
 }
 
