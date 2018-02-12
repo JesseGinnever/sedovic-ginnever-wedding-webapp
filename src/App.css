@@ -1,5 +1,9 @@
 .App {
-  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.navBarTitle {
+  flex: 1;
 }
 
 .App-logo {
@@ -14,20 +18,12 @@
   color: white;
 }
 
-.Main-content {
-  margin: 70px;
-}
-
 .App-title {
   font-size: 1.5em;
 }
 
 .App-intro {
   font-size: large;
-}
-
-.control-label {
-  float: left;
 }
 
 @keyframes App-logo-spin {
