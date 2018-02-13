@@ -6,7 +6,13 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
+import Drawer from 'material-ui/Drawer';
 import Tabs, { Tab } from 'material-ui/Tabs';
+
+import Divider from 'material-ui/Divider';
+import InboxIcon from 'material-ui-icons/Inbox';
+import DraftsIcon from 'material-ui-icons/Drafts';
+import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 
 class NavBar extends Component {
   state = {
@@ -17,12 +23,53 @@ class NavBar extends Component {
     this.setState({ value });
   };
 
+    toggleDrawer = (side, open) => () => {
+      this.setState({
+        [side]: open,
+      });
+    };
+
   render() {
+
+    const sideList = (
+        <div>
+        <List component="nav">
+          <ListItem button>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Inbox" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <DraftsIcon />
+            </ListItemIcon>
+            <ListItemText primary="Drafts" />
+          </ListItem>
+        </List>
+          <Divider />
+        <List component="nav">
+          <ListItem button>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Inbox" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <DraftsIcon />
+            </ListItemIcon>
+            <ListItemText primary="Drafts" />
+          </ListItem>
+        </List>
+        </div>
+    );
+
     return (
       <div className="NavBar">
           <AppBar position="static">
               <Toolbar>
-                <IconButton className="PropTypes.object.isRequired" color="inherit" aria-label="Menu">
+                <IconButton onClick={this.toggleDrawer('left', true)} aria-label="Menu">
                   <MenuIcon />
                 </IconButton>
                 <Typography variant="title" color="inherit" className="navBarTitle">
@@ -37,9 +84,18 @@ class NavBar extends Component {
                   <Tab label="Item Two" />
                   <Tab label="Item Three" />
                 </Tabs>
-                <Button color="inherit">Login</Button>
               </Toolbar>
             </AppBar>
+            <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
+              <div
+                tabIndex={0}
+                role="button"
+                onClick={this.toggleDrawer('left', false)}
+                onKeyDown={this.toggleDrawer('left', false)}
+              >
+                {sideList}
+              </div>
+            </Drawer>
       </div>
     );
   }
