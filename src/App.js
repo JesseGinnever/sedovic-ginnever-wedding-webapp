@@ -1,35 +1,13 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
-import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
-import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Tabs, { Tab } from 'material-ui/Tabs';
+import NavBar from './Components/NavBar';
 
 //Theme Imports
 import { createMuiTheme } from 'material-ui/styles';
 import indigo from 'material-ui/colors/indigo';
 import pink from 'material-ui/colors/pink';
 import red from 'material-ui/colors/red';
-
-const styles = {
-  root: {
-    width: '100%',
-  },
-  flex: {
-    flex: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-};
 
 //Theme setup
 const theme = createMuiTheme({
@@ -60,28 +38,7 @@ class App extends Component {
     return (
       <div className="App">
         <MuiThemeProvider theme={theme}>
-          <AppBar position="static">
-                  <Toolbar>
-                    <IconButton className="PropTypes.object.isRequired" color="inherit" aria-label="Menu">
-                      <MenuIcon />
-                    </IconButton>
-                    <Typography variant="title" color="inherit" className="navBarTitle">
-                      Sedovic - Ginnever Wedding
-                    </Typography>
-                    <Tabs
-                      value={this.state.value}
-                      onChange={this.handleChange}
-//                      indicatorColor="primary"
-//                      textColor="primary"
-                      centered
-                    >
-                      <Tab label="Item One" />
-                      <Tab label="Item Two" />
-                      <Tab label="Item Three" />
-                    </Tabs>
-                    <Button color="inherit">Login</Button>
-                  </Toolbar>
-                </AppBar>
+          <NavBar />
         </MuiThemeProvider>
       </div>
     );

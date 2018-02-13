@@ -1,51 +1,47 @@
 import React, { Component } from 'react';
 import '../App.css';
-import {Panel} from 'react-bootstrap';
-import { bootstrapUtils } from 'react-bootstrap/lib/utils';
-import { Navbar, MenuItem, Nav, NavItem, NavDropdown} from 'react-bootstrap';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
+import MenuIcon from 'material-ui-icons/Menu';
+import Tabs, { Tab } from 'material-ui/Tabs';
 
+class NavBar extends Component {
+  state = {
+    value: 0,
+  };
 
-class WeddingNavbar extends Component {
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
+
   render() {
     return (
-      <div className="WeddingNavbar">
-        <Navbar inverse fixedTop collapseOnSelect>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <a href="#home">Sedovic-Ginnever Wedding</a>
-            </Navbar.Brand>
-            <Navbar.Toggle />
-          </Navbar.Header>
-          <Navbar.Collapse>
-              <Nav>
-                <NavItem eventKey={1} href="#">
-                    About Us
-                </NavItem>
-                <NavItem eventKey={4} href="#">
-                  Venue
-                </NavItem>
-                <NavDropdown eventKey={4} title="Preferences" id="basic-nav-dropdown">
-                  <MenuItem eventKey={4.1}>Food</MenuItem>
-                  <MenuItem divider />
-                  <MenuItem eventKey={4.2}>Drinks</MenuItem>
-                  <MenuItem divider />
-                  <MenuItem eventKey={4.3}>Music</MenuItem>
-                  <MenuItem divider />
-                  <MenuItem eventKey={4.4}>Games</MenuItem>
-                </NavDropdown>
-                <NavItem eventKey={1} href="#">
-                  About Us
-                </NavItem>
-                <NavItem eventKey={3} href="#">
-                  Contact Us
-                </NavItem>
-              </Nav>
-
-          </Navbar.Collapse>
-        </Navbar>
+      <div className="NavBar">
+          <AppBar position="static">
+              <Toolbar>
+                <IconButton className="PropTypes.object.isRequired" color="inherit" aria-label="Menu">
+                  <MenuIcon />
+                </IconButton>
+                <Typography variant="title" color="inherit" className="navBarTitle">
+                  Sedovic - Ginnever Wedding
+                </Typography>
+                <Tabs
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  centered
+                >
+                  <Tab label="Item One" />
+                  <Tab label="Item Two" />
+                  <Tab label="Item Three" />
+                </Tabs>
+                <Button color="inherit">Login</Button>
+              </Toolbar>
+            </AppBar>
       </div>
-      );
+    );
   }
 }
-
-export default WeddingNavbar;
+export default NavBar;
