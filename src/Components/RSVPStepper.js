@@ -19,10 +19,13 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
   },
+  optionalLabel: {
+    textAlign: "center",
+  },
 });
 
 function getSteps() {
-  return ['New Phone, Who Dis?', 'RSVP', 'Done'];
+  return ['New Phone, Who Dis?', 'RSVP', 'Food & Drink', 'Done'];
 }
 
 function getStepContent(step) {
@@ -32,6 +35,8 @@ function getStepContent(step) {
     case 1:
       return <RSVPForm />;
     case 2:
+      return 'This is the bit I really care about!';
+    case 3:
       return 'This is the bit I really care about!';
     default:
       return 'Unknown step';
@@ -49,7 +54,7 @@ class RSVPStepper extends React.Component {
   };
 
   isStepOptional = step => {
-    return step === 2 || step === 3;
+    return step === 2;
   };
 
   isStepSkipped(step) {
@@ -104,12 +109,12 @@ class RSVPStepper extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Stepper activeStep={activeStep}>
+        <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map((label, index) => {
             const props = {};
             const labelProps = {};
             if (this.isStepOptional(index)) {
-              labelProps.optional = <Typography variant="caption">Optional</Typography>;
+              labelProps.optional = <Typography className={classes.optionalLabel} variant="caption">Optional</Typography>;
             }
             if (this.isStepSkipped(index)) {
               props.completed = false;
