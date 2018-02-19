@@ -14,8 +14,8 @@ import InboxIcon from 'material-ui-icons/Inbox';
 import DraftsIcon from 'material-ui-icons/Drafts';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import { withStyles } from 'material-ui/styles';
+import Hidden from 'material-ui/Hidden';
 
-import SimpleMediaCard from './Card'
 import RSVPCard from './RSVPCard'
 
 const styles = theme => ({
@@ -26,7 +26,7 @@ const styles = theme => ({
   }),
 });
 
-class NavBar extends Component {
+class ContentSection extends Component {
 
   state = {
     value: 0,
@@ -79,16 +79,20 @@ class NavBar extends Component {
     );
 
     return (
-      <div className="NavBar">
+      <div className="ContentSection">
           <AppBar position="static">
               <Toolbar>
-                <IconButton onClick={this.toggleDrawer('left', true)} aria-label="Menu">
-                  <MenuIcon />
-                </IconButton>
-                <Typography variant="title" color="inherit" className="navBarTitle">
-                  {/*Sedovic - Ginnever Wedding*/}
-                </Typography>
-                <Tabs value={this.state.value} onChange={this.handleChange} centered=true fullWidth=true>
+                  <Hidden smDown>
+                    <IconButton onClick={this.toggleDrawer('left', true)} aria-label="Menu">
+                      <MenuIcon />
+                    </IconButton>
+                  </Hidden>
+                  <Hidden smDown>
+                    <Typography variant="title" color="inherit" className="navBarTitle">
+                      Sedovic - Ginnever Wedding
+                    </Typography>
+                  </Hidden>
+                <Tabs value={this.state.value} onChange={this.handleChange} centered fullWidth>
                   <Tab label="RSVP" />
                   <Tab label="Wedding Info" />
                   <Tab label="Food, Drinks, Games" />
@@ -103,10 +107,13 @@ class NavBar extends Component {
             <div>
                 {this.state.value === 0 && <RSVPCard />}
                 {this.state.value === 1 && <Button size="small">Learn Two</Button>}
-                {this.state.value === 2 && <SimpleMediaCard />}
+                {this.state.value === 2 && <Button size="small">Learn Three</Button>}
             </div>
+            <footer>
+
+            </footer>
       </div>
     );
   }
 }
-export default withStyles(styles)(NavBar);
+export default withStyles(styles)(ContentSection);

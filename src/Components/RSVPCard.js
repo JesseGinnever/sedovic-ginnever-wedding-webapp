@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Card from 'material-ui/Card';
-import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
 import RSVPStepper from './RSVPStepper'
+import VerticalRSVPStepper from './VerticalRSVPStepper'
+import MobileRSVPStepper from './MobileRSVPStepper'
 
 const styles = {
   card: {
@@ -24,8 +24,14 @@ function RSVPCard(props) {
   return (
     <div>
       <Card className={classes.card}>
-        <RSVPStepper />
+        <VerticalRSVPStepper />
       </Card>
+      {/*
+      Show for mobile only?
+      <Card className={classes.card}>
+        <MobileRSVPStepper />
+      </Card>
+      */}
     </div>
   );
 }

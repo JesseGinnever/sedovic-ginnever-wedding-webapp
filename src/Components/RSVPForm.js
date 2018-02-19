@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
 import TextField from 'material-ui/TextField';
 
@@ -77,24 +76,6 @@ function RSVPForm(props) {
             placeholder="Placeholder"
             margin="normal"
           />
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <TextField
-            id="name"
-            label="Name"
-            className={classes.textField}
-            placeholder="Placeholder"
-            margin="normal"
-          />
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <Paper className={classes.paper}>xs=6 sm=3</Paper>
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <Paper className={classes.paper}>xs=6 sm=3</Paper>
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <Paper className={classes.paper}>xs=6 sm=3</Paper>
         </Grid>
       </Grid>
     </div>

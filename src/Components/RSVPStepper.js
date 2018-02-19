@@ -5,6 +5,7 @@ import Stepper, { Step, StepLabel } from 'material-ui/Stepper';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import RSVPForm from './RSVPForm';
+import IdentityCard from './IdentityCard'
 
 const styles = theme => ({
   root: {
@@ -14,6 +15,7 @@ const styles = theme => ({
   },
   button: {
     marginRight: theme.spacing.unit,
+    marginBottom: theme.spacing.unit,
   },
   instructions: {
     marginTop: theme.spacing.unit,
@@ -31,7 +33,7 @@ function getSteps() {
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <RSVPForm />;
+      return <IdentityCard />;
     case 1:
       return <RSVPForm />;
     case 2:
