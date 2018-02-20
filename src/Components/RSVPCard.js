@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Card from 'material-ui/Card';
-import RSVPStepper from './RSVPStepper'
 import VerticalRSVPStepper from './VerticalRSVPStepper'
-import MobileRSVPStepper from './MobileRSVPStepper'
 
 const styles = {
   card: {

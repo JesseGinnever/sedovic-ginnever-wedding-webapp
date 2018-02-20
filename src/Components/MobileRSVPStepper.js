@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import MobileStepper from 'material-ui/MobileStepper';
-import {StepContent} from 'material-ui/Stepper';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
@@ -34,10 +33,6 @@ const styles = theme => ({
       backgroundColor: theme.palette.background.default,
     },
 });
-
-function getSteps() {
-  return ['New Phone, Who Dis?', 'RSVP', 'Food & Drink', 'Done'];
-}
 
 function getStepContent(step) {
   switch (step) {

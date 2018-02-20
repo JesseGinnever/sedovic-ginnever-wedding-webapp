@@ -1,16 +1,23 @@
 import React from 'react';
+
 import PropTypes from 'prop-types';
+
+//Material UI
 import { withStyles } from 'material-ui/styles';
 import Stepper, { Step, StepLabel, StepContent } from 'material-ui/Stepper';
 import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
-import RSVPForm from './RSVPForm';
+
+//Custom Components
+import RSVPFormCard from './RSVPFormCard';
 import IdentityCard from './IdentityCard'
+import FoodDrinkCard from './FoodDrinkCard'
+import CommentCard from './CommentCard'
 
 const styles = theme => ({
   root: {
-    width: '90%',
+    width: '100%',
   },
   button: {
     marginTop: theme.spacing.unit,
@@ -33,24 +40,13 @@ function getStepContent(step) {
     case 0:
       return <IdentityCard />;
     case 1:
-      return <RSVPForm />;
+      return <RSVPFormCard />;
     case 2:
-      return `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`;
+      return <FoodDrinkCard />;
     case 3:
-      return `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`;
-    case 4:
-      return `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`;
+      return <CommentCard />;
     default:
-      return 'Unknown step';
+      return 'Something has gone wrong.  Please refesh the page or contact us directly to RSVP';
   }
 }
 
@@ -117,7 +113,14 @@ class VerticalRSVPStepper extends React.Component {
         </Stepper>
         {activeStep === steps.length && (
           <Paper square elevation={0} className={classes.resetContainer}>
-            <Typography>All steps completed - you&quot;re finished</Typography>
+            <Typography variant="headline" component="h2">
+              All Done!
+            </Typography>
+            <Typography component="p">
+                Thank you for RSVP'ing to our party!
+                If you need to change anything, please feel free to complete the forms again!
+                We cannot wait to see you in April!
+            </Typography>
             <Button onClick={this.handleReset} className={classes.button}>
               Reset
             </Button>

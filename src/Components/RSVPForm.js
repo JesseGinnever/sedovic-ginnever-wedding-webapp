@@ -24,62 +24,71 @@ const styles = theme => ({
     menu: {
       width: 200,
     },
-});
+  }
+);
 
-function RSVPForm(props) {
-  const { classes } = props;
+class RSVPForm extends React.Component {
+  state = {
 
-  return (
-    <div className={classes.root}>
-      <Grid container spacing={24}>
-       <Grid item xs={12} sm={6}>
-          <TextField
-            id="name"
-            label="Name"
-            className={classes.textField}
-            placeholder="Placeholder"
-            margin="normal"
-          />
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <TextField
-            id="name"
-            label="Name"
-            className={classes.textField}
-            placeholder="Placeholder"
-            margin="normal"
-          />
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <TextField
-            id="name"
-            label="Name"
-            className={classes.textField}
-            placeholder="Placeholder"
-            margin="normal"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            id="name"
-            label="Name"
-            className={classes.textField}
-            placeholder="Placeholder"
-            margin="normal"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            id="name"
-            label="Name"
-            className={classes.textField}
-            placeholder="Placeholder"
-            margin="normal"
-          />
-        </Grid>
-      </Grid>
-    </div>
-  );
+  };
+
+  render () {
+      const { classes } = this.props;
+
+      return (
+        <div className={classes.root}>
+          <Grid container spacing={24}>
+           <Grid item xs={12} sm={6}>
+              <TextField
+                id="partyName"
+                label="Party Name"
+                className={classes.textField}
+                margin="normal"
+              />
+            </Grid>
+            <Grid item xs={6} sm={3}>
+              <TextField
+                required
+                id="partySize"
+                label="Party Size"
+                placeholder="2"
+                value={this.state.partySize}
+                type="number"
+                className={classes.textField}
+                margin="normal"
+              />
+            </Grid>
+            <Grid item xs={6} sm={3}>
+              <TextField
+                id="name"
+                label="Name"
+                className={classes.textField}
+                placeholder="Placeholder"
+                margin="normal"
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                id="name"
+                label="Name"
+                className={classes.textField}
+                placeholder="Placeholder"
+                margin="normal"
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                id="name"
+                label="Name"
+                className={classes.textField}
+                placeholder="Placeholder"
+                margin="normal"
+              />
+            </Grid>
+          </Grid>
+        </div>
+      );
+    }
 }
 
 RSVPForm.propTypes = {
