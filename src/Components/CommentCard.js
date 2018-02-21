@@ -39,24 +39,24 @@ class CommentCard extends React.Component {
 
     return (
       <div>
-          <CardContent>
-            <Typography variant="headline" component="h2">
-              Please leave us a comment.
-            </Typography>
-            <Typography component="p">
-              Specify any special needs that you may have or if you would like to express a special need privately please visit our Contact Us page.
-            </Typography>
-            <Grid container spacing={24}>
-                <Grid item xs={12} sm={12}>
-                  <TextField
-                    id="personalNeed"
-                    label="Comments and Requests"
-                    className={classes.textField}
-                    margin="normal"
-                  />
-                </Grid>
-            </Grid>
-          </CardContent>
+        <CardContent>
+          <Typography variant="headline" component="h2">
+            Please leave us a comment.
+          </Typography>
+          <Typography component="p">
+            Specify any special needs that you may have or if you would like to express a special need privately please visit our Contact Us page.
+          </Typography>
+          <Grid container spacing={24}>
+              <Grid item xs={12} sm={12}>
+                <TextField
+                  id="personalNeed"
+                  label="Comments and Requests"
+                  className={classes.textField}
+                  margin="normal"
+                />
+              </Grid>
+          </Grid>
+        </CardContent>
       </div>
     );
   }
