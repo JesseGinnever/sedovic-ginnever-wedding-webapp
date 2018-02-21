@@ -35,10 +35,36 @@ function getSteps() {
   return ['New Phone, Who Dis?', 'RSVP', 'Food & Drink', 'Done'];
 }
 
-function getStepContent(step) {
+class VerticalRSVPStepper extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      activeStep: 0,
+      stepIsValid: false,
+      weddingCode: undefined,
+    }
+  }
+
+  updateFormValidation = (isValid) => {
+    this.setState({
+      stepIsValid: isValid,
+    });
+  }
+
+  updateWeddingCode = (weddingCode) => {
+    this.setState({
+      weddingCode: weddingCode,
+    });
+  }
+
+  getStepContent = (step) => {
   switch (step) {
     case 0:
-      return <IdentityCard />;
+        return <IdentityCard 
+                 validationCallback={this.updateFormValidation} 
+                 updateWeddingCode={this.updateWeddingCode}
+                 weddingCode={this.state.weddingCode} 
+               />;
     case 1:
       return <RSVPFormCard />;
     case 2:
@@ -49,11 +75,6 @@ function getStepContent(step) {
       return 'Something has gone wrong.  Please refesh the page or contact us directly to RSVP';
   }
 }
-
-class VerticalRSVPStepper extends React.Component {
-  state = {
-    activeStep: 0,
-  };
 
   handleNext = () => {
     this.setState({
@@ -86,7 +107,7 @@ class VerticalRSVPStepper extends React.Component {
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>
                 <StepContent>
-                  {getStepContent(index)}
+                  {this.getStepContent(index)}
                   <div className={classes.actionsContainer}>
                     <div>
                       <Button
@@ -101,6 +122,7 @@ class VerticalRSVPStepper extends React.Component {
                         color="primary"
                         onClick={this.handleNext}
                         className={classes.button}
+                        disabled={!this.state.stepIsValid}
                       >
                         {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                       </Button>
