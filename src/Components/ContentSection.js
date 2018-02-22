@@ -16,7 +16,7 @@ import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import { withStyles } from 'material-ui/styles';
 import Hidden from 'material-ui/Hidden';
 
-import RSVPCard from './RSVPCard'
+import RSVPWorkflow from './RSVPWorkflow'
 
 const styles = theme => ({
   root: theme.mixins.gutters({
@@ -105,7 +105,7 @@ class ContentSection extends Component {
               </div>
             </Drawer>
             <div>
-                {this.state.value === 0 && <RSVPCard />}
+                {this.state.value === 0 && <RSVPWorkflow />}
                 {this.state.value === 1 && <Button size="small">Learn Two</Button>}
                 {this.state.value === 2 && <Button size="small">Learn Three</Button>}
             </div>

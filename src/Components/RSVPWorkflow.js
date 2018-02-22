@@ -17,7 +17,7 @@ const styles = {
   },
 };
 
-function RSVPCard(props) {
+function RSVPWorkflow(props) {
   const { classes } = props;
   return (
     <div>
@@ -34,8 +34,8 @@ function RSVPCard(props) {
   );
 }
 
-RSVPCard.propTypes = {
+RSVPWorkflow.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(RSVPCard);
+export default withStyles(styles)(RSVPWorkflow);

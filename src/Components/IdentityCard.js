@@ -40,7 +40,7 @@ class IdentityCard extends React.Component {
     //updateWeddingCode
     this.props.updateWeddingCode(this.state.weddingCode)
 
-    if (this.state.weddingCode && this.state.weddingCode.length > 0) {
+    if (this.state.weddingCode && this.state.weddingCode.length >= 3) {
       this.props.validationCallback(true);
     } else {
       this.props.validationCallback(false);
@@ -61,7 +61,7 @@ class IdentityCard extends React.Component {
             <TextField
               id="with-placeholder"
               label="Wedding Code"
-              placeholder="1A2B3C"
+              placeholder="1A2"
               className={classes.textField}
               margin="normal"
               helperText="Found on your invitation"

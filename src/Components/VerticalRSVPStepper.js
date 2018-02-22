@@ -42,6 +42,12 @@ class VerticalRSVPStepper extends React.Component {
       activeStep: 0,
       stepIsValid: false,
       weddingCode: undefined,
+      attending: undefined,
+      partyName: undefined,
+      partySize: undefined,
+      drinkTotal: undefined,
+      meals: [],
+      comments: undefined,
     }
   }
 
@@ -54,6 +60,42 @@ class VerticalRSVPStepper extends React.Component {
   updateWeddingCode = (weddingCode) => {
     this.setState({
       weddingCode: weddingCode,
+    });
+  }
+
+  updateAttending = (attending) => {
+    this.setState({
+      attending: attending,
+    });
+  }
+
+  updatePartyName = (partyName) => {
+    this.setState({
+      partyName: partyName,
+    });
+  }
+
+  updatePartySize = (partySize) => {
+    this.setState({
+      partySize: partySize,
+    });
+  }
+
+  updateDrinkTotal = (drinkTotal) => {
+    this.setState({
+      drinkTotal: drinkTotal,
+    });
+  }
+
+  updateMeals = (meals) => {
+    this.setState({
+      meals: meals,
+    });
+  }
+
+  updateComments = (comments) => {
+    this.setState({
+      comments: comments,
     });
   }
 
