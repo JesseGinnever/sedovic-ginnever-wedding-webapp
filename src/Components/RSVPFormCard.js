@@ -7,8 +7,10 @@ import { CardContent }from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 import TextField from 'material-ui/TextField';
 import Grid from 'material-ui/Grid';
-import {FormControlLabel } from 'material-ui/Form';
 import Switch from 'material-ui/Switch';
+import Radio, { RadioGroup } from 'material-ui/Radio'
+import { FormLabel, FormControl, FormControlLabel, FormGroup, FormHelperText } from 'material-ui/Form';
+import Checkbox from 'material-ui/Checkbox';
 
 const styles = {
   card: {
@@ -35,11 +37,11 @@ const styles = {
 
 class RSVPFormCard extends React.Component {
   state = {
-    attending: false,
+    attending: undefined,
   };
 
   handleChange = name => event => {
-    this.setState({ [name]: event.target.checked });
+    this.setState({ [name]: event.target.value });
   };
 
   render () {
@@ -48,27 +50,52 @@ class RSVPFormCard extends React.Component {
     return (
       <div>
           <CardContent>
-            <Typography variant="headline" component="h2">
-              We are so glad you could make it, PARTY NAME!
-            </Typography>
-            <Typography component="p">
-              Please let us know how many will be in your party below.
-            </Typography>
+          {this.state.attending === 'true' ?
+            <div>
+              <Typography variant="headline" component="h2">
+                We are so glad you could make it, PARTY NAME!
+              </Typography>
+              <Typography component="p">
+                Please let us know how many will be in your party below.
+              </Typography>
+            </div>
+            : 
+            <div>
+              <Typography variant="headline" component="h2">
+                Please let us know if you will be attending below.
+              </Typography>
+              <Typography component="p">
+                If you cannot join us, please state that you are not awesome and proceed.
+              </Typography>
+            </div>
+          }
             <Grid container spacing={24}>
                 <Grid item xs={12} sm={12}>
-                  <FormControlLabel
-                    control={
-                      <Switch
-                        checked={this.state.attending}
-                        onChange={this.handleChange('attending')}
-                        color="primary"
-                      />
-                    }
-                    label="Attending?"
-                  />
+                  <FormGroup>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={this.state.attending === 'true'}
+                          onChange={this.handleChange('attending')}
+                          value="true"
+                        />
+                      }
+                      label="I am awesome and I want to party."
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={this.state.attending === 'false'}
+                          onChange={this.handleChange('attending')}
+                          value="false"
+                        />
+                      }
+                      label="Not awesome. Won't party."
+                    />
+                  </FormGroup>
                 </Grid>
             </Grid>
-            {this.state.attending ?
+            {this.state.attending === 'true' ?
               <div>
                 <Grid container spacing={24}>
                   <Grid item xs={12} sm={6}>
