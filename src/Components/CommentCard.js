@@ -43,6 +43,7 @@ class CommentCard extends React.Component {
       <div>
         <CardContent>
           <Typography variant="headline" component="h2">
+            {this.props.message}
             Please leave us a comment.
           </Typography>
           <Typography component="p">
@@ -66,6 +67,7 @@ class CommentCard extends React.Component {
 
 CommentCard.propTypes = {
   classes: PropTypes.object.isRequired,
+  message: PropTypes.string,
 };
 
 export default withStyles(styles)(CommentCard);

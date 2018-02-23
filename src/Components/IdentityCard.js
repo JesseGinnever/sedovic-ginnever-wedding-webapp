@@ -77,8 +77,8 @@ class IdentityCard extends React.Component {
 
 IdentityCard.propTypes = {
   classes: PropTypes.object.isRequired,
-  validationCallback: PropTypes.object.funct,
-  updateWeddingCode: PropTypes.object.funct,
+  validationCallback: PropTypes.func,
+  updateWeddingCode: PropTypes.func,
   weddingCode: PropTypes.string,
 };
 

@@ -110,15 +110,21 @@ class VerticalRSVPStepper extends React.Component {
   }
 
   getStepContent = (step) => {
+  
+
   switch (step) {
     case 0:
         return <IdentityCard 
                  validationCallback={this.updateFormValidation} 
-                 updateWeddingCode={this.updateWeddingCode}
                  weddingCode={this.state.weddingCode} 
+              updateWeddingCode={this.updateWeddingCode}
                />;
     case 1:
-      return <RSVPFormCard />;
+      return <RSVPFormCard 
+              validationCallback={this.updateFormValidation} 
+              attending={this.state.attending}
+              updateAttending={this.updateAttending}
+             />;
     case 2:
       return <FoodDrinkCard />;
     case 3:
@@ -129,6 +135,9 @@ class VerticalRSVPStepper extends React.Component {
 }
 
   handleNext = () => {
+    this.setState({
+      stepIsValid: false,
+    });
     this.setState({
       activeStep: this.state.activeStep + 1,
     });

@@ -7,9 +7,7 @@ import { CardContent }from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 import TextField from 'material-ui/TextField';
 import Grid from 'material-ui/Grid';
-import Switch from 'material-ui/Switch';
-import Radio, { RadioGroup } from 'material-ui/Radio'
-import { FormLabel, FormControl, FormControlLabel, FormGroup, FormHelperText } from 'material-ui/Form';
+import {FormControlLabel, FormGroup } from 'material-ui/Form';
 import Checkbox from 'material-ui/Checkbox';
 
 const styles = {
@@ -37,12 +35,24 @@ const styles = {
 
 class RSVPFormCard extends React.Component {
   state = {
-    attending: undefined,
+    attending: this.props.attending,
   };
 
   handleChange = name => event => {
-    this.setState({ [name]: event.target.value });
+    this.setState({ 
+      [name]: event.target.value 
+    },
+    this.checkFormValidation);
   };
+
+  checkFormValidation() {
+    //updateWeddingCode
+    this.props.updateAttending(this.state.attending)
+
+    if (this.state.attending) {
+      this.props.validationCallback(true);
+    }
+  }
 
   render () {
     const { classes } = this.props;
@@ -131,6 +141,8 @@ class RSVPFormCard extends React.Component {
 
 RSVPFormCard.propTypes = {
   classes: PropTypes.object.isRequired,
+  updateAttending: PropTypes.func,
+  attending: PropTypes.string,
 };
 
 export default withStyles(styles)(RSVPFormCard);
