@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import '../App.css';
+
+//Material UI
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
@@ -8,7 +9,6 @@ import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import Drawer from 'material-ui/Drawer';
 import Tabs, { Tab } from 'material-ui/Tabs';
-
 import Divider from 'material-ui/Divider';
 import InboxIcon from 'material-ui-icons/Inbox';
 import DraftsIcon from 'material-ui-icons/Drafts';
@@ -16,6 +16,7 @@ import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import { withStyles } from 'material-ui/styles';
 import Hidden from 'material-ui/Hidden';
 
+//Custom Components
 import VerticalRSVPStepper from './VerticalRSVPStepper';
 
 const styles = theme => ({

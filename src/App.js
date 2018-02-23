@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import './App.css';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+//components
 import ContentSection from './Components/ContentSection';
 
 //Theme Imports
+import './App.css';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { createMuiTheme } from 'material-ui/styles';
 import teal from 'material-ui/colors/teal';
 import pink from 'material-ui/colors/pink';

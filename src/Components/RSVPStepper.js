@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+//Material UI
 import { withStyles } from 'material-ui/styles';
 import Stepper, { Step, StepLabel } from 'material-ui/Stepper';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
+
+//Custom Components
 import RSVPForm from './RSVPForm';
 import IdentityCard from './IdentityCard'
 

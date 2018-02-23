@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+//Material UI
 import { withStyles } from 'material-ui/styles';
 import { CardContent }from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
