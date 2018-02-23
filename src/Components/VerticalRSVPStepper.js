@@ -8,6 +8,7 @@ import Stepper, { Step, StepLabel, StepContent } from 'material-ui/Stepper';
 import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
+import Card from 'material-ui/Card';
 
 //Custom Components
 import RSVPFormCard from './RSVPFormCard';
@@ -28,6 +29,16 @@ const styles = theme => ({
   },
   resetContainer: {
     padding: theme.spacing.unit * 3,
+  },
+  card: {
+    maxWidth: '80%',
+    padding: 10,
+    marginLeft  : 'auto',
+    marginRight : 'auto',
+    marginTop : 40,
+  },
+  media: {
+    height: 200,
   },
 });
 
@@ -143,6 +154,7 @@ class VerticalRSVPStepper extends React.Component {
 
     return (
       <div className={classes.root}>
+      <Card className={classes.card}>
         <Stepper activeStep={activeStep} orientation="vertical">
           {steps.map((label, index) => {
             return (
@@ -190,6 +202,7 @@ class VerticalRSVPStepper extends React.Component {
             </Button>
           </Paper>
         )}
+      </Card>
       </div>
     );
   }
