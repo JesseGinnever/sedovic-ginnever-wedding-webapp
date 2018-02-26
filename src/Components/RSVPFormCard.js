@@ -36,6 +36,7 @@ const styles = {
 class RSVPFormCard extends React.Component {
   state = {
     attending: this.props.attending,
+    partySize: this.props.partySize,
   };
 
   handleChange = name => event => {
@@ -46,12 +47,19 @@ class RSVPFormCard extends React.Component {
   };
 
   checkFormValidation() {
-    //updateWeddingCode
     this.props.updateAttending(this.state.attending)
+    this.props.updatePartySize(this.state.partySize)
 
-    if (this.state.attending) {
+    if (this.state.attending === 'false' || (this.state.attending && 
+        (this.state.partySize && this.state.partySize > 0))) {
       this.props.validationCallback(true);
-    }
+    } else {
+      this.props.validationCallback(false);
+    } 
+  }
+
+  componentWillMount() {
+    this.checkFormValidation();
   }
 
   render () {
@@ -125,7 +133,9 @@ class RSVPFormCard extends React.Component {
                       label="Party Size"
                       placeholder="2"
                       value={this.state.partySize}
+                      onChange={this.handleChange('partySize')}
                       type="number"
+                      InputProps={{ inputProps: { min: 0, max: 10 } }}
                       className={classes.textField}
                       margin="normal"
                     />
@@ -143,6 +153,8 @@ RSVPFormCard.propTypes = {
   classes: PropTypes.object.isRequired,
   updateAttending: PropTypes.func,
   attending: PropTypes.string,
+  updatePartySize: PropTypes.func,
+  partySize: PropTypes.number,
 };
 
 export default withStyles(styles)(RSVPFormCard);

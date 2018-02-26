@@ -24,8 +24,6 @@ const styles = {
 
 class IdentityCard extends React.Component {
   state = {
-    activeStep: 0,
-    stepIsValid: false,
     weddingCode: this.props.weddingCode,
   };
 
@@ -40,17 +38,24 @@ class IdentityCard extends React.Component {
 
   checkFormValidation() {
     //updateWeddingCode
-    this.props.updateWeddingCode(this.state.weddingCode)
+    if (this.state.weddingCode) {
+      this.props.updateWeddingCode(this.state.weddingCode)
+    }
 
     if (this.state.weddingCode && this.state.weddingCode.length >= 3) {
       this.props.validationCallback(true);
-    } else {
+    } else if (this.state.stepIsValid === true) {
       this.props.validationCallback(false);
     }
   }
 
+  componentWillMount() {
+    this.checkFormValidation();
+  }
+
   render() {  
     const { classes } = this.props;
+
     return (
           <CardContent>
             <Typography variant="headline" component="h2">

@@ -124,6 +124,8 @@ class VerticalRSVPStepper extends React.Component {
               validationCallback={this.updateFormValidation} 
               attending={this.state.attending}
               updateAttending={this.updateAttending}
+              partySize={this.state.partySize}
+              updatePartySize={this.updatePartySize}
              />;
     case 2:
       return <FoodDrinkCard />;
