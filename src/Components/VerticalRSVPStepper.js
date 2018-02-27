@@ -57,7 +57,6 @@ class VerticalRSVPStepper extends React.Component {
       partySize: undefined,
       drinkTotal: undefined,
       meals: [],
-      confirmedMeals: [],
       comments: undefined,
     }
   }
@@ -113,10 +112,6 @@ class VerticalRSVPStepper extends React.Component {
     this.setState({
       meals: meals,
     });
-
-    this.setState({
-      confirmedMeals: meals,
-    });
   }
 
   updateComments = (comments) => {
@@ -127,10 +122,10 @@ class VerticalRSVPStepper extends React.Component {
 
   createMealObject = () => {
     return {
-      meat1: 'Chicken',
-      meat2: 'Salmon',
-      side1: 'Beans',
-      side2: 'Mac',
+      meat1: '',
+      meat2: '',
+      side1: '',
+      side2: '',
     }
   }
 
