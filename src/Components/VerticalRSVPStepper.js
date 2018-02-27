@@ -85,9 +85,20 @@ class VerticalRSVPStepper extends React.Component {
     });
   }
 
-  updatePartySize = (partySize) => {
+  updatePartySize = (newPartySize) => {
+    if (this.partySize === newPartySize) { //@TODO THE FUCK IS HAPPENING!?!?!?!?
+      return;
+    }
+    
+    var mealArray = [];
+    for(var i = 0; i < newPartySize; i++) {
+      mealArray.push(this.createMealObject());
+    }
     this.setState({
-      partySize: partySize,
+      meals: mealArray,
+    });
+    this.setState({
+      partySize: newPartySize,
     });
   }
 
@@ -109,6 +120,15 @@ class VerticalRSVPStepper extends React.Component {
     });
   }
 
+  createMealObject = () => {
+    return {
+      meat1: 'Chicken',
+      meat2: 'Salmon',
+      side1: 'Beans',
+      side2: 'Mac',
+    }
+  }
+
   getStepContent = (step) => {
   
 
@@ -117,7 +137,7 @@ class VerticalRSVPStepper extends React.Component {
         return <IdentityCard 
                  validationCallback={this.updateFormValidation} 
                  weddingCode={this.state.weddingCode} 
-              updateWeddingCode={this.updateWeddingCode}
+                 updateWeddingCode={this.updateWeddingCode}
                />;
     case 1:
       return <RSVPFormCard 
@@ -128,7 +148,13 @@ class VerticalRSVPStepper extends React.Component {
               updatePartySize={this.updatePartySize}
              />;
     case 2:
-      return <FoodDrinkCard />;
+      return <FoodDrinkCard
+              validationCallback={this.updateFormValidation}
+              meals={this.state.meals}
+              updateMeals={this.updateMeals}
+              drinkTotal={this.state.drinkTotal}
+              updateDrinkTotal={this.updateDrinkTotal}
+             />;
     case 3:
       return <CommentCard />;
     default:

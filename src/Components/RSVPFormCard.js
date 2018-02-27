@@ -150,6 +150,7 @@ class RSVPFormCard extends React.Component {
 }
 
 RSVPFormCard.propTypes = {
+  validationCallback: PropTypes.func,
   classes: PropTypes.object.isRequired,
   updateAttending: PropTypes.func,
   attending: PropTypes.string,

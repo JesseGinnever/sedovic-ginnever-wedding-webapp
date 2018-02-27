@@ -62,14 +62,34 @@ const styles = {
   },
   mainContent: {
     marginTop: 10,
+  },
+  mealContent: {
+    padding: 12,
+    width: '100%',
   }
 };
 
+
+
 class FoodDrinkCard extends React.Component {
   state = {
-    age: '',
-    name: 'Turkey'
+    meals: this.props.meals,
+    drinkTotal: this.props.drinkTotal   
   };
+  
+  handleMealChange = (event, index, property) => {
+    var stateMeals = this.state.meals;
+    var newMeal = this.state.meals[index];
+    newMeal[property] = event.target.value;
+    stateMeals[index] = newMeal;
+
+    this.setState({ meals: stateMeals });
+    this.props.updateMeals(stateMeals);
+  };
+
+  componentWillMount() {
+    this.props.validationCallback(true);
+  }
 
   render () {
     const { classes } = this.props;
@@ -94,7 +114,7 @@ class FoodDrinkCard extends React.Component {
                 <Hidden xsDown>
                     <Grid item xs={12} sm={6} className={classes.gridLabel}>
                      <Typography component="p">
-                       How many drinks would your party like?
+                       How many drinks would you guess your party will want?
                      </Typography>
                     </Grid>
                   </Hidden>
@@ -104,126 +124,78 @@ class FoodDrinkCard extends React.Component {
                     id="partySize"
                     label="# of Drinks"
                     placeholder="4"
-                    value={this.state.numberOfDrinks}
+                    value={this.state.drinkTotal}
                     type="number"
                     className={classes.textField}
                     margin="normal"
+                    onChange={this.props.updateDrinkTotal}
                   />
                 </Grid>
-                <Grid item xs={12} sm={12} className={classes.partyMember}>
-                  <Typography variant="title">
-                    Party Member 1
-                  </Typography>
-                </Grid>
-                <Grid item xs={6} sm={3} className={classes.rowContainer}>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel className={classes.selectLabel}>Meat #1</InputLabel>
-                    <Select
-                      value={this.state.age} onChange={this.handleChange}>
-                      <MenuItem value='Chicken'>Chicken</MenuItem>
-                      <MenuItem value='Salmon'>Salmon</MenuItem>
-                      <MenuItem value='Pulled Pork'>Pulled Pork</MenuItem>
-                      <MenuItem value='Brisket'>Brisket</MenuItem>
-                    />
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={6} sm={3} className={classes.rowContainer}>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel className={classes.selectLabel}>Meat #2</InputLabel>
-                    <Select
-                      value={this.state.age} onChange={this.handleChange}>
-                      <MenuItem value='Chicken'>Chicken</MenuItem>
-                      <MenuItem value='Salmon'>Salmon</MenuItem>
-                      <MenuItem value='Pulled Pork'>Pulled Pork</MenuItem>
-                      <MenuItem value='Brisket'>Brisket</MenuItem>
-                    />
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={6} sm={3} className={classes.rowContainer}>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel className={classes.selectLabel}>Side #1</InputLabel>
-                    <Select
-                      value={this.state.age} onChange={this.handleChange}>
-                      <MenuItem value='Beans'>Beans w/ Bacon</MenuItem>
-                      <MenuItem value='Potato'>Sweet Pepper Potato Salad</MenuItem>
-                      <MenuItem value='Mac'>White Cheddar Cracker Mac</MenuItem>
-                      <MenuItem value='Coleslaw'>Coleslaw</MenuItem>
-                    />
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={6} sm={3} className={classes.rowContainer}>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel className={classes.selectLabel}>Side #2</InputLabel>
-                    <Select
-                      value={this.state.age} onChange={this.handleChange}>
-                      <MenuItem value='Beans'>Beans w/ Bacon</MenuItem>
-                      <MenuItem value='Potato'>Sweet Pepper Potato Salad</MenuItem>
-                      <MenuItem value='Mac'>White Cheddar Cracker Mac</MenuItem>
-                      <MenuItem value='Coleslaw'>Coleslaw</MenuItem>
-                    />
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12} sm={12} className={classes.partyMember}>
-                  <Typography variant="title">
-                    Party Member 2
-                  </Typography>
-                </Grid>
-                <Grid item xs={6} sm={3} className={classes.rowContainer}>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel className={classes.selectLabel}>Meat #1</InputLabel>
-                    <Select
-                      value={this.state.age} onChange={this.handleChange}>
-                      <MenuItem value='Chicken'>Chicken</MenuItem>
-                      <MenuItem value='Salmon'>Salmon</MenuItem>
-                      <MenuItem value='Pulled Pork'>Pulled Pork</MenuItem>
-                      <MenuItem value='Brisket'>Brisket</MenuItem>
-                    />
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={6} sm={3} className={classes.rowContainer}>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel className={classes.selectLabel}>Meat #2</InputLabel>
-                    <Select
-                      value={this.state.age} onChange={this.handleChange}>
-                      <MenuItem value='Chicken'>Chicken</MenuItem>
-                      <MenuItem value='Salmon'>Salmon</MenuItem>
-                      <MenuItem value='Pulled Pork'>Pulled Pork</MenuItem>
-                      <MenuItem value='Brisket'>Brisket</MenuItem>
-                    />
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={6} sm={3} className={classes.rowContainer}>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel className={classes.selectLabel}>Side #1</InputLabel>
-                    <Select
-                      value={this.state.age} onChange={this.handleChange}>
-                      <MenuItem value='Beans'>Beans w/ Bacon</MenuItem>
-                      <MenuItem value='Potato'>Sweet Pepper Potato Salad</MenuItem>
-                      <MenuItem value='Mac'>White Cheddar Cracker Mac</MenuItem>
-                      <MenuItem value='Coleslaw'>Coleslaw</MenuItem>
-                    />
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={6} sm={3} className={classes.rowContainer}>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel className={classes.selectLabel}>Side #2</InputLabel>
-                    <Select
-                      value={this.state.age} onChange={this.handleChange}>
-                      <MenuItem value='Beans'>Beans w/ Bacon</MenuItem>
-                      <MenuItem value='Potato'>Sweet Pepper Potato Salad</MenuItem>
-                      <MenuItem value='Mac'>White Cheddar Cracker Mac</MenuItem>
-                      <MenuItem value='Coleslaw'>Coleslaw</MenuItem>
-                    />
-                    </Select>
-                  </FormControl>
-                </Grid>
+
+
+                {this.state.meals.map(function(meal, index) {
+                  return <div className={classes.mealContent}>
+                  <Grid container spacing={24}>
+                  <Grid item xs={12} sm={12} className={classes.partyMember}>
+                    <Typography variant="title">
+                      Party Member {index + 1}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6} sm={3} className={classes.rowContainer}>
+                    <FormControl className={classes.formControl}>
+                      <InputLabel className={classes.selectLabel}>Meat #1</InputLabel>
+                      <Select value={meal.meat1}  onChange={(e) => this.handleMealChange(e, index, "meat1")}>
+                        <MenuItem value='Chicken'>Chicken</MenuItem>
+                        <MenuItem value='Salmon'>Salmon</MenuItem>
+                        <MenuItem value='Pulled Pork'>Pulled Pork</MenuItem>
+                        <MenuItem value='Brisket'>Brisket</MenuItem>
+                      />
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={6} sm={3} className={classes.rowContainer}>
+                    <FormControl className={classes.formControl}>
+                      <InputLabel className={classes.selectLabel}>Meat #2</InputLabel>
+                      <Select
+                        value={meal.meat2} onChange={(e) => this.handleMealChange(e, index, "meat2")}>
+                        <MenuItem value='Chicken'>Chicken</MenuItem>
+                        <MenuItem value='Salmon'>Salmon</MenuItem>
+                        <MenuItem value='Pulled Pork'>Pulled Pork</MenuItem>
+                        <MenuItem value='Brisket'>Brisket</MenuItem>
+                      />
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={6} sm={3} className={classes.rowContainer}>
+                    <FormControl className={classes.formControl}>
+                      <InputLabel className={classes.selectLabel}>Side #1</InputLabel>
+                      <Select
+                        value={meal.side1} onChange={(e) => this.handleMealChange(e, index, "side1")}>
+                        <MenuItem value='Beans'>Beans w/ Bacon</MenuItem>
+                        <MenuItem value='Potato'>Sweet Pepper Potato Salad</MenuItem>
+                        <MenuItem value='Mac'>White Cheddar Cracker Mac</MenuItem>
+                        <MenuItem value='Coleslaw'>Coleslaw</MenuItem>
+                      />
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={6} sm={3} className={classes.rowContainer}>
+                    <FormControl className={classes.formControl}>
+                      <InputLabel className={classes.selectLabel}>Side #2</InputLabel>
+                      <Select
+                        value={meal.side2} onChange={(e) => this.handleMealChange(e, index, "side2")}>
+                        <MenuItem value='Beans'>Beans w/ Bacon</MenuItem>
+                        <MenuItem value='Potato'>Sweet Pepper Potato Salad</MenuItem>
+                        <MenuItem value='Mac'>White Cheddar Cracker Mac</MenuItem>
+                        <MenuItem value='Coleslaw'>Coleslaw</MenuItem>
+                      />
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  </Grid>
+                </div>;
+                }, this)}
+
               </Grid>
             </form>
           </CardContent>
@@ -234,6 +206,11 @@ class FoodDrinkCard extends React.Component {
 
 FoodDrinkCard.propTypes = {
   classes: PropTypes.object.isRequired,
+  validationCallback: PropTypes.func,
+  meals: PropTypes.array,
+  updateMeals: PropTypes.func,
+  drinkTotal: PropTypes.number,
+  updateDrinkTotal: PropTypes.func,
 };
 
 export default withStyles(styles)(FoodDrinkCard);
