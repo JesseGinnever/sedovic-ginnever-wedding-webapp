@@ -156,9 +156,13 @@ class VerticalRSVPStepper extends React.Component {
               updateDrinkTotal={this.updateDrinkTotal}
              />;
     case 3:
-      return <CommentCard />;
+      return <CommentCard 
+              validationCallback={this.updateFormValidation}
+              updateComments={this.updateComments}
+              comments={this.state.comments}
+             />;
     default:
-      return 'Something has gone wrong.  Please refesh the page or contact us directly to RSVP';
+          return 'Something has gone wrong.  Please refesh the page or contact us directly to RSVP';
   }
 }
 
@@ -228,6 +232,7 @@ class VerticalRSVPStepper extends React.Component {
             <Typography variant="headline" component="h2">
               All Done!
             </Typography>
+            {console.log(this.state)}
             <Typography component="p">
                 Thank you for RSVP'ing to our party!
                 If you need to change anything, please feel free to complete the forms again!

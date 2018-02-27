@@ -87,6 +87,13 @@ class FoodDrinkCard extends React.Component {
     this.props.updateMeals(stateMeals);
   };
 
+  handleDrinkTotalChange = event => {
+    this.setState({ 
+      drinkTotal: event.target.value 
+    },
+    this.props.updateDrinkTotal(event.target.value));
+  };
+
   componentWillMount() {
     this.props.validationCallback(true);
   }
@@ -128,7 +135,7 @@ class FoodDrinkCard extends React.Component {
                     type="number"
                     className={classes.textField}
                     margin="normal"
-                    onChange={this.props.updateDrinkTotal}
+                    onChange={this.handleDrinkTotalChange}
                   />
                 </Grid>
 

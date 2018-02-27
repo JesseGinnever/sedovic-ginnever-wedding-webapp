@@ -33,8 +33,12 @@ const styles = {
 
 class CommentCard extends React.Component {
   state = {
-
+    comments: this.props.message,
   };
+
+  componentWillMount() {
+    this.props.validationCallback(true);
+  }
 
   render () {
     const { classes } = this.props;
@@ -43,7 +47,6 @@ class CommentCard extends React.Component {
       <div>
         <CardContent>
           <Typography variant="headline" component="h2">
-            {this.props.message}
             Please leave us a comment.
           </Typography>
           <Typography component="p">
@@ -56,6 +59,8 @@ class CommentCard extends React.Component {
                   label="Comments and Requests"
                   className={classes.textField}
                   margin="normal"
+                  value={this.state.comments}
+                  onChange={(e) => this.props.updateComments(e.target.value)}
                 />
               </Grid>
           </Grid>
@@ -67,7 +72,9 @@ class CommentCard extends React.Component {
 
 CommentCard.propTypes = {
   classes: PropTypes.object.isRequired,
-  message: PropTypes.string,
+  validationCallback: PropTypes.func,
+  comments: PropTypes.string,
+  updateComments: PropTypes.func,
 };
 
 export default withStyles(styles)(CommentCard);
