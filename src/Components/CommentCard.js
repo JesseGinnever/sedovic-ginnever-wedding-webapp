@@ -49,9 +49,15 @@ class CommentCard extends React.Component {
           <Typography variant="headline" component="h2">
             Please leave us a comment.
           </Typography>
-          <Typography component="p">
-            Specify any special needs that you may have or if you would like to express a special need privately please visit our Contact Us page.
+          {this.props.attending === 'false' ?
+            <Typography component="p">
+            We are very sorry that you cannot join us.  Please revisit this site if anything changes and feel free to leave us a message below!
           </Typography>
+          :
+            <Typography component="p">
+              Specify any special needs that you may have or if you would like to express a special need privately please visit our Contact Us page.
+            </Typography>
+          }
           <Grid container spacing={24}>
               <Grid item xs={12} sm={12}>
                 <TextField
@@ -75,6 +81,7 @@ CommentCard.propTypes = {
   validationCallback: PropTypes.func,
   comments: PropTypes.string,
   updateComments: PropTypes.func,
+  attending: PropTypes.string,
 };
 
 export default withStyles(styles)(CommentCard);

@@ -130,60 +130,90 @@ class VerticalRSVPStepper extends React.Component {
   }
 
   getStepContent = (step) => {
-  
-
-  switch (step) {
-    case 0:
-        return <IdentityCard 
-                 validationCallback={this.updateFormValidation} 
-                 weddingCode={this.state.weddingCode} 
-                 updateWeddingCode={this.updateWeddingCode}
+    switch (step) {
+      case 0:
+          return <IdentityCard 
+                  validationCallback={this.updateFormValidation} 
+                  weddingCode={this.state.weddingCode} 
+                  updateWeddingCode={this.updateWeddingCode}
+                 />;
+      case 1:
+        return <RSVPFormCard 
+                validationCallback={this.updateFormValidation} 
+                attending={this.state.attending}
+                updateAttending={this.updateAttending}
+                partySize={this.state.partySize}
+                updatePartySize={this.updatePartySize}
                />;
-    case 1:
-      return <RSVPFormCard 
-              validationCallback={this.updateFormValidation} 
-              attending={this.state.attending}
-              updateAttending={this.updateAttending}
-              partySize={this.state.partySize}
-              updatePartySize={this.updatePartySize}
-             />;
-    case 2:
-      return <FoodDrinkCard
-              validationCallback={this.updateFormValidation}
-              meals={this.state.meals}
-              updateMeals={this.updateMeals}
-              drinkTotal={this.state.drinkTotal}
-              updateDrinkTotal={this.updateDrinkTotal}
-             />;
-    case 3:
-      return <CommentCard 
-              validationCallback={this.updateFormValidation}
-              updateComments={this.updateComments}
-              comments={this.state.comments}
-             />;
-    default:
-          return 'Something has gone wrong.  Please refesh the page or contact us directly to RSVP';
-  }
+      case 2:
+        return <FoodDrinkCard
+                validationCallback={this.updateFormValidation}
+                meals={this.state.meals}
+                updateMeals={this.updateMeals}
+                drinkTotal={this.state.drinkTotal}
+                updateDrinkTotal={this.updateDrinkTotal}
+               />;
+      case 3:
+        return <CommentCard 
+                validationCallback={this.updateFormValidation}
+                updateComments={this.updateComments}
+                comments={this.state.comments}
+                attending={this.state.attending}
+               />;
+      default:
+            return 'Something has gone wrong.  Please refesh the page or contact us directly to RSVP';
+    }
 }
 
   handleNext = () => {
-    this.setState({
-      stepIsValid: false,
-    });
-    this.setState({
-      activeStep: this.state.activeStep + 1,
-    });
+    if (this.state.attending === 'false' && this.state.activeStep !== getSteps().length - 1) {
+      this.setState({
+        activeStep: getSteps().length - 1,
+      });
+    } else {
+      this.setState({
+        stepIsValid: false,
+      });
+      this.setState({
+        activeStep: this.state.activeStep + 1,
+      });
+    }
   };
 
   handleBack = () => {
+    var activeStep = this.state.activeStep;
+
+    if (this.state.attending === 'false' && this.state.activeStep === 3) {
+      activeStep = 2;
+    }
+  
     this.setState({
-      activeStep: this.state.activeStep - 1,
+      activeStep: activeStep - 1,
     });
+    
   };
 
   handleReset = () => {
     this.setState({
       activeStep: 0,
+    });
+    this.setState({
+      attending: '',
+    });
+    this.setState({
+      weddingCode: '',
+    });
+    this.setState({
+      partyName: '',
+    });
+    this.setState({
+      partySize: '',
+    });
+    this.setState({
+      drinkTotal: '',
+    });
+    this.setState({
+      meals: [],
     });
   };
 
