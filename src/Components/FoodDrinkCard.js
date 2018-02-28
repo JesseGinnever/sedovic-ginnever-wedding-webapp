@@ -141,7 +141,7 @@ class FoodDrinkCard extends React.Component {
 
 
                 {this.state.meals.map(function(meal, index) {
-                  return <div className={classes.mealContent}>
+                  return <div key={'meal' + index} className={classes.mealContent}>
                   <Grid container spacing={24}>
                   <Grid item xs={12} sm={12} className={classes.partyMember}>
                     <Typography variant="title">
@@ -216,7 +216,7 @@ FoodDrinkCard.propTypes = {
   validationCallback: PropTypes.func,
   meals: PropTypes.array,
   updateMeals: PropTypes.func,
-  drinkTotal: PropTypes.number,
+  drinkTotal: PropTypes.string,
   updateDrinkTotal: PropTypes.func,
 };
 

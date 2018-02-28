@@ -155,7 +155,7 @@ RSVPFormCard.propTypes = {
   updateAttending: PropTypes.func,
   attending: PropTypes.string,
   updatePartySize: PropTypes.func,
-  partySize: PropTypes.number,
+  partySize: PropTypes.string,
 };
 
 export default withStyles(styles)(RSVPFormCard);
