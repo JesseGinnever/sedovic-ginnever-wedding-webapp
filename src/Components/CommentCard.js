@@ -66,7 +66,7 @@ class CommentCard extends React.Component {
                   className={classes.textField}
                   margin="normal"
                   value={this.state.comments}
-                  onChange={(e) => this.props.updateComments(e.target.value)}
+                  onChange={(e) => this.props.updateInvitationResponse('comments', e.target.value)}
                 />
               </Grid>
           </Grid>
@@ -80,7 +80,7 @@ CommentCard.propTypes = {
   classes: PropTypes.object.isRequired,
   validationCallback: PropTypes.func,
   comments: PropTypes.string,
-  updateComments: PropTypes.func,
+  updateInvitationResponse: PropTypes.func,
   attending: PropTypes.string,
 };
 

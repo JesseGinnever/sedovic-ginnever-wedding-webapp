@@ -39,7 +39,7 @@ class IdentityCard extends React.Component {
   checkFormValidation() {
     //updateWeddingCode
     if (this.state.weddingCode) {
-      this.props.updateWeddingCode(this.state.weddingCode)
+      this.props.updateInvitationResponse('weddingCode', this.state.weddingCode)
     }
 
     if (this.state.weddingCode && this.state.weddingCode.length >= 3) {
@@ -83,7 +83,7 @@ class IdentityCard extends React.Component {
 IdentityCard.propTypes = {
   classes: PropTypes.object.isRequired,
   validationCallback: PropTypes.func,
-  updateWeddingCode: PropTypes.func,
+  updateInvitationResponse: PropTypes.func,
   weddingCode: PropTypes.string,
 };
 

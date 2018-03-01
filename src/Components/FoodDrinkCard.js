@@ -78,20 +78,20 @@ class FoodDrinkCard extends React.Component {
   };
   
   handleMealChange = (event, index, property) => {
-    var stateMeals = this.state.meals;
+    var oldMeals = this.state.meals;
     var newMeal = this.state.meals[index];
     newMeal[property] = event.target.value;
-    stateMeals[index] = newMeal;
+    oldMeals[index] = newMeal;
 
-    this.setState({ meals: stateMeals });
-    this.props.updateMeals(stateMeals);
+    this.setState({ meals: oldMeals });
+    this.props.updateInvitationResponse('meals', oldMeals);
   };
 
   handleDrinkTotalChange = event => {
     this.setState({ 
       drinkTotal: event.target.value 
     },
-    this.props.updateDrinkTotal(event.target.value));
+    this.props.updateInvitationResponse('drinkTotal', event.target.value));
   };
 
   componentWillMount() {
@@ -215,9 +215,8 @@ FoodDrinkCard.propTypes = {
   classes: PropTypes.object.isRequired,
   validationCallback: PropTypes.func,
   meals: PropTypes.array,
-  updateMeals: PropTypes.func,
+  updateInvitationResponse: PropTypes.func,
   drinkTotal: PropTypes.string,
-  updateDrinkTotal: PropTypes.func,
 };
 
 export default withStyles(styles)(FoodDrinkCard);

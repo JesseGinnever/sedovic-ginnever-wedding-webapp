@@ -11,9 +11,9 @@ import Card from 'material-ui/Card';
 
 //Custom Components
 import RSVPFormCard from './RSVPFormCard';
-import IdentityCard from './IdentityCard'
-import FoodDrinkCard from './FoodDrinkCard'
-import CommentCard from './CommentCard'
+import IdentityCard from './IdentityCard';
+import FoodDrinkCard from './FoodDrinkCard';
+import CommentCard from './CommentCard';
 
 const styles = theme => ({
   root: {
@@ -41,6 +41,19 @@ const styles = theme => ({
   },
 });
 
+class InvitationResponse {
+  constructor() {
+    this.weddingCode = undefined;
+    this.attending = undefined;
+    this.partyName = undefined;
+    this.partySize = undefined;
+    this.meals = [];
+    this.drinkTotal = undefined;
+    this.comments = undefined;
+    this.eMailAddress = undefined;
+  }
+}
+
 function getSteps() {
   return ['New Phone, Who Dis?', 'RSVP', 'Food & Drink', 'Done'];
 }
@@ -51,13 +64,7 @@ class VerticalRSVPStepper extends React.Component {
     this.state = {
       activeStep: 0,
       stepIsValid: false,
-      weddingCode: undefined,
-      attending: undefined,
-      partyName: undefined,
-      partySize: undefined,
-      drinkTotal: undefined,
-      meals: [],
-      comments: undefined,
+      invitationResponse: new InvitationResponse(),
     }
   }
 
@@ -67,21 +74,12 @@ class VerticalRSVPStepper extends React.Component {
     });
   }
 
-  updateWeddingCode = (weddingCode) => {
+  updateInvitationResponse = (key, value) => {
+    var updatedInvitationResponse = this.state.invitationResponse;
+    updatedInvitationResponse[key] = value;
+    
     this.setState({
-      weddingCode: weddingCode,
-    });
-  }
-
-  updateAttending = (attending) => {
-    this.setState({
-      attending: attending,
-    });
-  }
-
-  updatePartyName = (partyName) => {
-    this.setState({
-      partyName: partyName,
+      invitationResponse: updatedInvitationResponse,
     });
   }
 
@@ -94,29 +92,13 @@ class VerticalRSVPStepper extends React.Component {
     for(var i = 0; i < newPartySize; i++) {
       mealArray.push(this.createMealObject());
     }
-    this.setState({
-      meals: mealArray,
-    });
-    this.setState({
-      partySize: newPartySize,
-    });
-  }
 
-  updateDrinkTotal = (drinkTotal) => {
-    this.setState({
-      drinkTotal: drinkTotal,
-    });
-  }
+    var updatedInvitationResponse = this.state.invitationResponse;
+    updatedInvitationResponse.meals = mealArray;
+    updatedInvitationResponse.partySize = newPartySize;
 
-  updateMeals = (meals) => {
     this.setState({
-      meals: meals,
-    });
-  }
-
-  updateComments = (comments) => {
-    this.setState({
-      comments: comments,
+      invitationResponse: updatedInvitationResponse,
     });
   }
 
@@ -134,31 +116,30 @@ class VerticalRSVPStepper extends React.Component {
       case 0:
           return <IdentityCard 
                   validationCallback={this.updateFormValidation} 
-                  weddingCode={this.state.weddingCode} 
-                  updateWeddingCode={this.updateWeddingCode}
+                  weddingCode={this.state.invitationResponse.weddingCode}
+                  updateInvitationResponse={this.updateInvitationResponse}
                  />;
       case 1:
         return <RSVPFormCard 
                 validationCallback={this.updateFormValidation} 
-                attending={this.state.attending}
-                updateAttending={this.updateAttending}
-                partySize={this.state.partySize}
+                attending={this.state.invitationResponse.attending}
+                updateInvitationResponse={this.updateInvitationResponse}
+                partySize={this.state.invitationResponse.partySize}
                 updatePartySize={this.updatePartySize}
                />;
       case 2:
         return <FoodDrinkCard
                 validationCallback={this.updateFormValidation}
-                meals={this.state.meals}
-                updateMeals={this.updateMeals}
-                drinkTotal={this.state.drinkTotal}
-                updateDrinkTotal={this.updateDrinkTotal}
+                meals={this.state.invitationResponse.meals}
+                updateInvitationResponse={this.updateInvitationResponse}
+                drinkTotal={this.state.invitationResponse.drinkTotal}
                />;
       case 3:
         return <CommentCard 
                 validationCallback={this.updateFormValidation}
-                updateComments={this.updateComments}
-                comments={this.state.comments}
-                attending={this.state.attending}
+                updateInvitationResponse={this.updateInvitationResponse}
+                comments={this.state.invitationResponse.comments}
+                attending={this.state.invitationResponse.attending}
                />;
       default:
             return 'Something has gone wrong.  Please refesh the page or contact us directly to RSVP';
@@ -166,7 +147,7 @@ class VerticalRSVPStepper extends React.Component {
 }
 
   handleNext = () => {
-    if (this.state.attending === 'false' && this.state.activeStep !== getSteps().length - 1) {
+    if (this.state.invitationResponse.attending === 'false' && this.state.activeStep !== getSteps().length - 1) {
       this.setState({
         activeStep: getSteps().length - 1,
       });
@@ -183,7 +164,7 @@ class VerticalRSVPStepper extends React.Component {
   handleBack = () => {
     var activeStep = this.state.activeStep;
 
-    if (this.state.attending === 'false' && this.state.activeStep === 3) {
+    if (this.state.invitationResponse.attending === 'false' && this.state.activeStep === 3) {
       activeStep = 2;
     }
   
@@ -198,22 +179,7 @@ class VerticalRSVPStepper extends React.Component {
       activeStep: 0,
     });
     this.setState({
-      attending: '',
-    });
-    this.setState({
-      weddingCode: '',
-    });
-    this.setState({
-      partyName: '',
-    });
-    this.setState({
-      partySize: '',
-    });
-    this.setState({
-      drinkTotal: '',
-    });
-    this.setState({
-      meals: [],
+      invitationResponse: new InvitationResponse(),
     });
   };
 
@@ -262,7 +228,7 @@ class VerticalRSVPStepper extends React.Component {
             <Typography variant="headline" component="h2">
               All Done!
             </Typography>
-            {console.log(this.state)}
+            {console.log(this.state.invitationResponse)}
             <Typography component="p">
                 Thank you for RSVP'ing to our party!
                 If you need to change anything, please feel free to complete the forms again!
