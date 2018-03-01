@@ -47,8 +47,8 @@ class RSVPFormCard extends React.Component {
   };
 
   checkFormValidation() {
-    this.props.updateInvitationResponse('attending', this.state.attending)
-    this.props.updatePartySize(this.state.partySize)
+    this.props.updateInvitationResponse('attending', this.state.attending);
+    this.props.updateInvitationResponsePartySize(this.state.partySize);
 
     if (this.state.attending === 'false' || (this.state.attending && 
         (this.state.partySize && this.state.partySize > 0))) {
@@ -154,7 +154,7 @@ RSVPFormCard.propTypes = {
   classes: PropTypes.object.isRequired,
   updateInvitationResponse: PropTypes.func,
   attending: PropTypes.string,
-  updatePartySize: PropTypes.func,
+  updateInvitationResponsePartySize: PropTypes.func,
   partySize: PropTypes.string,
 };
 

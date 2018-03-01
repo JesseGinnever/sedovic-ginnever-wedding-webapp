@@ -83,7 +83,7 @@ class VerticalRSVPStepper extends React.Component {
     });
   }
 
-  updatePartySize = (newPartySize) => {
+  updateInvitationResponsePartySize = (newPartySize) => {
     if (this.partySize === newPartySize) { //@TODO THE FUCK IS HAPPENING!?!?!?!?
       return;
     }
@@ -93,13 +93,8 @@ class VerticalRSVPStepper extends React.Component {
       mealArray.push(this.createMealObject());
     }
 
-    var updatedInvitationResponse = this.state.invitationResponse;
-    updatedInvitationResponse.meals = mealArray;
-    updatedInvitationResponse.partySize = newPartySize;
-
-    this.setState({
-      invitationResponse: updatedInvitationResponse,
-    });
+    this.updateInvitationResponse('meals', mealArray);
+    this.updateInvitationResponse('partySize', newPartySize);
   }
 
   createMealObject = () => {
@@ -125,7 +120,7 @@ class VerticalRSVPStepper extends React.Component {
                 attending={this.state.invitationResponse.attending}
                 updateInvitationResponse={this.updateInvitationResponse}
                 partySize={this.state.invitationResponse.partySize}
-                updatePartySize={this.updatePartySize}
+                updateInvitationResponsePartySize={this.updateInvitationResponsePartySize}
                />;
       case 2:
         return <FoodDrinkCard
