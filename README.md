@@ -2432,3 +2432,22 @@ In the future, we might start automatically compiling incompatible third-party m
 ## Something Missing?
 
 If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/packages/react-scripts/template/README.md)
+
+
+
+https://medium.com/@McMenemy/react-docker-for-development-and-production-6cb50a1218c5
+
+docker build -t wedding-ui .
+docker run -it -p 3000:3000 -v C:\Users\Jesse\dev\sedovic-ginnever-wedding-webapp/src:/sedovic-ginnever-wedding-webapp/src wedding-ui
+
+
+To build a production image run:
+
+$ docker build ./ --build-arg app_env=production
+
+Then to run the production image:
+
+$ docker run -i -t -p 3000:3000 [image id]
+
+Docker Compose
+docker-compose up --build

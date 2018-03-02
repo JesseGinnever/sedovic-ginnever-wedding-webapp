@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+
+  sample-app:
+    container_name: wedding-ui
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - './src:/sedovic-ginnever-wedding-webapp/src/'
+      - './public:/sedovic-ginnever-wedding-webapp/public'
+      - '/sedovic-ginnever-wedding-webapp/app/node_modules'
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development
