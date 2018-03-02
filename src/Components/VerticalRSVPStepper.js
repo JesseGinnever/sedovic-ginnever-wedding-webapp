@@ -50,7 +50,7 @@ class InvitationResponse {
     this.meals = [];
     this.drinkTotal = undefined;
     this.comments = undefined;
-    this.eMailAddress = undefined;
+    this.emailAddress = undefined;
   }
 }
 
@@ -135,6 +135,7 @@ class VerticalRSVPStepper extends React.Component {
                 updateInvitationResponse={this.updateInvitationResponse}
                 comments={this.state.invitationResponse.comments}
                 attending={this.state.invitationResponse.attending}
+                emailAddress={this.state.invitationResponse.emailAddress}
                />;
       default:
             return 'Something has gone wrong.  Please refesh the page or contact us directly to RSVP';

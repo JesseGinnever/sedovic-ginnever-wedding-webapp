@@ -34,6 +34,7 @@ const styles = {
 class CommentCard extends React.Component {
   state = {
     comments: this.props.message,
+    emailAddress: this.props.emailAddress,
   };
 
   componentWillMount() {
@@ -59,16 +60,28 @@ class CommentCard extends React.Component {
             </Typography>
           }
           <Grid container spacing={24}>
-              <Grid item xs={12} sm={12}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                id="personalNeed"
+                label="Comments and Requests"
+                className={classes.textField}
+                margin="normal"
+                value={this.state.comments}
+                onChange={(e) => this.props.updateInvitationResponse('comments', e.target.value)}
+              />
+            </Grid>
+            {this.props.attending === 'true' ?
+              <Grid item xs={12} sm={5}>
                 <TextField
-                  id="personalNeed"
-                  label="Comments and Requests"
+                  id="emailAddress"
+                  label="Email Address"
                   className={classes.textField}
                   margin="normal"
-                  value={this.state.comments}
-                  onChange={(e) => this.props.updateInvitationResponse('comments', e.target.value)}
+                  value={this.state.emailAddress}
+                  onChange={(e) => this.props.updateInvitationResponse('emailAddress', e.target.value)}
                 />
               </Grid>
+            : null}
           </Grid>
         </CardContent>
       </div>
@@ -82,6 +95,7 @@ CommentCard.propTypes = {
   comments: PropTypes.string,
   updateInvitationResponse: PropTypes.func,
   attending: PropTypes.string,
+  emailAddress: PropTypes.string,
 };
 
 export default withStyles(styles)(CommentCard);
